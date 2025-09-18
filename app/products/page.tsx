@@ -78,6 +78,9 @@ function ProductsContent() {
       params.append('limit', '12');
 
       const response = await fetch(`/api/products?${params.toString()}`);
+      if (!response.ok) {
+        throw new Error(`Products API error: ${response.status}`);
+      }
       const data = await response.json();
 
       if (data.success) {

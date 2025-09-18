@@ -63,6 +63,9 @@ export default function Home() {
       try {
         // Fetch sliders
         const slidersResponse = await fetch('/api/sliders');
+        if (!slidersResponse.ok) {
+          throw new Error(`Sliders API error: ${slidersResponse.status}`);
+        }
         const slidersData = await slidersResponse.json();
         if (slidersData.success) {
            setSlides(slidersData.data.map((slider: {
@@ -86,6 +89,9 @@ export default function Home() {
 
         // Fetch categories
          const categoriesResponse = await fetch('/api/categories');
+         if (!categoriesResponse.ok) {
+           throw new Error(`Categories API error: ${categoriesResponse.status}`);
+         }
          const categoriesData = await categoriesResponse.json();
          if (categoriesData.success) {
            setCategories(categoriesData.data.map((cat: Category) => ({
@@ -103,6 +109,9 @@ export default function Home() {
         
         for (const category of categoriesToShow) {
           const productsResponse = await fetch(`/api/products?category=${category._id}&limit=6`);
+          if (!productsResponse.ok) {
+            throw new Error(`Products API error: ${productsResponse.status}`);
+          }
           const productsData = await productsResponse.json();
           
           if (productsData.success) {
