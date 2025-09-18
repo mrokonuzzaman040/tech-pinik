@@ -163,9 +163,6 @@ export default function Home() {
       {/* Category Slider */}
       <section className="mb-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-            Shop by Category
-          </h2>
           <CategorySlider categories={categories} />
         </div>
       </section>
