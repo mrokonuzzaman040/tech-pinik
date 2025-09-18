@@ -53,11 +53,18 @@ export default function AdminProductsPage() {
       const response = await fetch(`/api/products?${params}`);
       if (response.ok) {
         const data = await response.json();
-        setProducts(data.products);
-        setTotalPages(Math.ceil(data.total / 10));
+        if (data.success) {
+          setProducts(data.data || []);
+          setTotalPages(data.pagination?.totalPages || 1);
+        } else {
+          setProducts([]);
+        }
+      } else {
+        setProducts([]);
       }
     } catch (error) {
       console.error('Error fetching products:', error);
+      setProducts([]);
     } finally {
       setLoading(false);
     }
@@ -73,10 +80,17 @@ export default function AdminProductsPage() {
       const response = await fetch('/api/categories');
       if (response.ok) {
         const data = await response.json();
-        setCategories(data.categories);
+        if (data.success) {
+          setCategories(data.data || []);
+        } else {
+          setCategories([]);
+        }
+      } else {
+        setCategories([]);
       }
     } catch (error) {
       console.error('Error fetching categories:', error);
+      setCategories([]);
     }
   };
 
@@ -149,7 +163,7 @@ export default function AdminProductsPage() {
         <div className="mt-4 sm:mt-0">
           <Link
             href="/admin/products/new"
-            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Product
@@ -169,7 +183,7 @@ export default function AdminProductsPage() {
                   placeholder="Search products..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                 />
               </div>
             </div>
@@ -177,7 +191,7 @@ export default function AdminProductsPage() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
               >
                 <option value="">All Categories</option>
                 {categories.map((category) => (
@@ -189,7 +203,7 @@ export default function AdminProductsPage() {
             </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
               <Filter className="h-4 w-4 mr-2" />
               Filters
@@ -202,9 +216,9 @@ export default function AdminProductsPage() {
       <div className="bg-white shadow rounded-lg overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
           </div>
-        ) : products.length > 0 ? (
+        ) : products && products.length > 0 ? (
           <>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
@@ -306,7 +320,7 @@ export default function AdminProductsPage() {
                         <div className="flex items-center space-x-2">
                           <Link
                             href={`/products/${product.slug}`}
-                            className="text-blue-600 hover:text-blue-900"
+                            className="text-primary-600 hover:text-blue-900"
                             title="View Product"
                           >
                             <Eye className="h-4 w-4" />
@@ -391,7 +405,7 @@ export default function AdminProductsPage() {
             <div className="mt-6">
               <Link
                 href="/admin/products/new"
-                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Product

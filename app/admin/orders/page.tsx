@@ -136,7 +136,7 @@ export default function AdminOrdersPage() {
       case 'pending':
         return 'text-yellow-600 bg-yellow-100';
       case 'confirmed':
-        return 'text-blue-600 bg-blue-100';
+        return 'text-primary-600 bg-primary-100';
       case 'processing':
         return 'text-purple-600 bg-purple-100';
       case 'shipped':
@@ -187,7 +187,7 @@ export default function AdminOrdersPage() {
                   placeholder="Search by phone number..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
                 />
               </div>
             </div>
@@ -195,7 +195,7 @@ export default function AdminOrdersPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                className="block w-full px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
               >
                 {orderStatuses.map((status) => (
                   <option key={status.value} value={status.value}>
@@ -212,7 +212,7 @@ export default function AdminOrdersPage() {
       <div className="bg-white shadow rounded-lg overflow-hidden">
         {loading ? (
           <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
           </div>
         ) : orders.length > 0 ? (
           <>
@@ -296,7 +296,7 @@ export default function AdminOrdersPage() {
                         <select
                           value={order.orderStatus}
                           onChange={(e) => updateOrderStatus(order._id, e.target.value)}
-                          className={`text-sm rounded-full px-3 py-1 font-medium border-0 focus:ring-2 focus:ring-blue-500 ${getStatusColor(order.orderStatus)}`}
+                          className={`text-sm rounded-full px-3 py-1 font-medium border-0 focus:ring-2 focus:ring-primary-500 ${getStatusColor(order.orderStatus)}`}
                         >
                           {orderStatuses.slice(1).map((status) => (
                             <option key={status.value} value={status.value}>
@@ -314,7 +314,7 @@ export default function AdminOrdersPage() {
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link
                           href={`/admin/orders/${order._id}`}
-                          className="text-blue-600 hover:text-blue-900"
+                          className="text-primary-600 hover:text-primary-700"
                           title="View Order Details"
                         >
                           <Eye className="h-4 w-4" />

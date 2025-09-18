@@ -65,7 +65,7 @@ export default function AdminOrderDetailsPage() {
 
   const orderStatuses = [
     { value: 'pending', label: 'Pending', icon: Clock, color: 'text-yellow-600 bg-yellow-100' },
-    { value: 'confirmed', label: 'Confirmed', icon: CheckCircle, color: 'text-blue-600 bg-blue-100' },
+    { value: 'confirmed', label: 'Confirmed', icon: CheckCircle, color: 'text-primary-600 bg-primary-100' },
     { value: 'processing', label: 'Processing', icon: Package, color: 'text-purple-600 bg-purple-100' },
     { value: 'shipped', label: 'Shipped', icon: Truck, color: 'text-indigo-600 bg-indigo-100' },
     { value: 'delivered', label: 'Delivered', icon: CheckCircle, color: 'text-green-600 bg-green-100' },
@@ -159,7 +159,7 @@ export default function AdminOrderDetailsPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
       </div>
     );
   }
@@ -174,7 +174,7 @@ export default function AdminOrderDetailsPage() {
         </p>
         <Link
           href="/admin/orders"
-          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+          className="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-500 hover:bg-primary-600"
         >
           Back to Orders
         </Link>
@@ -223,7 +223,7 @@ export default function AdminOrderDetailsPage() {
                 value={order.orderStatus}
                 onChange={(e) => updateOrderStatus(e.target.value)}
                 disabled={updating}
-                className="block px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50"
+                className="block px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 disabled:opacity-50"
               >
                 {orderStatuses.map((status) => (
                   <option key={status.value} value={status.value}>
@@ -232,7 +232,7 @@ export default function AdminOrderDetailsPage() {
                 ))}
               </select>
               {updating && (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-primary-500"></div>
               )}
             </div>
           </div>
