@@ -121,7 +121,7 @@ export default function ProductsPage() {
             Products
             {filters.search && (
               <span className="text-lg font-normal text-gray-600 ml-2">
-                - Search results for "{filters.search}"
+                - Search results for &quot;{filters.search}&quot;
               </span>
             )}
           </h1>
