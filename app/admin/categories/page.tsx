@@ -44,10 +44,17 @@ export default function AdminCategoriesPage() {
       const response = await fetch('/api/categories');
       if (response.ok) {
         const data = await response.json();
-        setCategories(data);
+        if (data.success) {
+          setCategories(data.data || []);
+        } else {
+          setCategories([]);
+        }
+      } else {
+        setCategories([]);
       }
     } catch (error) {
       console.error('Error fetching categories:', error);
+      setCategories([]);
     } finally {
       setLoading(false);
     }
@@ -131,7 +138,7 @@ export default function AdminCategoriesPage() {
     });
   };
 
-  const filteredCategories = categories.filter(category =>
+  const filteredCategories = (categories || []).filter(category =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
