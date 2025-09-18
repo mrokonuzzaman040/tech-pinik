@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Header from '@/components/Header';
 import HeroSlider from '@/components/HeroSlider';
 import CategorySlider from '@/components/CategorySlider';
 import CategoryProducts from '@/components/CategoryProducts';
@@ -145,52 +144,38 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <Header />
-        <div className="flex items-center justify-center min-h-[400px]">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading...</p>
-          </div>
+      <div className="flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      
-      <main>
-        {/* Hero Slider */}
-        <section className="mb-8">
-          <HeroSlider slides={slides} />
-        </section>
+    <div>
+      {/* Hero Slider */}
+      <section className="mb-8">
+        <HeroSlider slides={slides} />
+      </section>
 
-        {/* Category Slider */}
-        <section className="mb-12">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-              Shop by Category
-            </h2>
-            <CategorySlider categories={categories} />
-          </div>
-        </section>
-
-        {/* Category Products */}
-        <section className="mb-12">
-          <div className="container mx-auto px-4">
-            <CategoryProducts categories={categoryProducts} />
-          </div>
-        </section>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-secondary-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 TechPinik. All rights reserved.</p>
+      {/* Category Slider */}
+      <section className="mb-12">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+            Shop by Category
+          </h2>
+          <CategorySlider categories={categories} />
         </div>
-      </footer>
+      </section>
+
+      {/* Category Products */}
+      <section className="mb-12">
+        <div className="container mx-auto px-4">
+          <CategoryProducts categories={categoryProducts} />
+        </div>
+      </section>
     </div>
   );
 }
