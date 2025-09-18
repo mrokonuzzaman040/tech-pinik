@@ -61,9 +61,6 @@ const nextConfig = {
     ];
   },
 
-  // Enable SWC minification
-  swcMinify: true,
-
   // Power by header
   poweredByHeader: false,
 

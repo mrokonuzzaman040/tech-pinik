@@ -26,7 +26,7 @@ interface Category {
 
 interface Product {
   id: string;
-  _id?: string;
+  _id: string;
   name: string;
   slug: string;
   images: string[];
@@ -36,7 +36,7 @@ interface Product {
   stock: number;
   rating: number;
   reviewCount: number;
-  category?: {
+  category: {
     _id: string;
     name: string;
     slug: string;

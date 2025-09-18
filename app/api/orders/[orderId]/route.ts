@@ -5,12 +5,13 @@ import Order from '@/models/Order';
 // GET /api/orders/[orderId] - Get single order
 export async function GET(
   request: NextRequest,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }> }
 ) {
   try {
     await connectDB();
 
-    const order = await Order.findById(params.orderId)
+    const { orderId } = await params;
+    const order = await Order.findById(orderId)
       .populate('items.product', 'name slug images')
       .lean();
 
@@ -34,32 +35,31 @@ export async function GET(
 // PATCH /api/orders/[orderId] - Update order status
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }> }
 ) {
   try {
     await connectDB();
 
+    const { orderId } = await params;
     const body = await request.json();
-    const { orderStatus, paymentStatus, notes } = body;
+    const { status } = body;
 
-    const updateData: Record<string, unknown> = {};
-    
-    if (orderStatus) {
-      updateData.orderStatus = orderStatus;
-    }
-    
-    if (paymentStatus) {
-      updateData.paymentStatus = paymentStatus;
-    }
-    
-    if (notes !== undefined) {
-      updateData.notes = notes;
+    // Validate status
+    const validStatuses = ['pending', 'confirmed', 'processing', 'shipped', 'delivered', 'cancelled'];
+    if (!validStatuses.includes(status)) {
+      return NextResponse.json(
+        { error: 'Invalid status' },
+        { status: 400 }
+      );
     }
 
     const order = await Order.findByIdAndUpdate(
-      params.orderId,
-      updateData,
-      { new: true, runValidators: true }
+      orderId,
+      { 
+        status,
+        updatedAt: new Date()
+      },
+      { new: true }
     ).populate('items.product', 'name slug images');
 
     if (!order) {

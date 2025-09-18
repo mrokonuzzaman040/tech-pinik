@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ProductCard from './ProductCard';
 
 interface Product {
+  _id: string;
   id: string;
   name: string;
   slug: string;
@@ -15,6 +16,11 @@ interface Product {
   rating: number;
   reviewCount: number;
   brand: string;
+  category: {
+    _id: string;
+    name: string;
+    slug: string;
+  };
 }
 
 interface Category {

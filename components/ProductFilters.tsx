@@ -71,7 +71,7 @@ export default function ProductFilters({ filters, onFilterChange }: ProductFilte
     if (value === '' || value === null || value === undefined) {
       delete newFilters[key];
     } else {
-      (newFilters as any)[key] = value;
+      (newFilters as Record<string, unknown>)[key] = value;
     }
     
     onFilterChange(newFilters);
