@@ -49,13 +49,13 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
 
   if (!slides || slides.length === 0) {
     return (
-      <div className="relative h-64 md:h-96 bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center">
+      <div className="relative h-64 md:h-96 bg-gradient-to-r from-primary-500 to-secondary-600 flex items-center justify-center">
         <div className="text-center text-white">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Welcome to Tech Pinik</h2>
           <p className="text-lg md:text-xl mb-6">Your trusted electronics store in Bangladesh</p>
           <Link
             href="/products"
-            className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
           >
             Shop Now
           </Link>
@@ -97,7 +97,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                 <div className="container mx-auto px-4">
                   <div className="max-w-2xl text-white">
                     {slide.subtitle && (
-                      <p className="text-sm md:text-base font-medium mb-2 text-blue-200">
+                      <p className="text-sm md:text-base font-medium mb-2 text-primary-200">
                         {slide.subtitle}
                       </p>
                     )}
@@ -112,7 +112,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                     {slide.buttonText && slide.buttonLink && (
                       <Link
                         href={slide.buttonLink}
-                        className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                        className="inline-block bg-primary-500 hover:bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
                       >
                         {slide.buttonText}
                       </Link>

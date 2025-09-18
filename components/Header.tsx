@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       {/* Top Bar */}
-      <div className="bg-blue-600 text-white py-2">
+      <div className="bg-secondary-800 text-white py-2">
         <div className="container mx-auto px-4 text-center text-sm">
           <span>🚚 Free Delivery on Orders Over ৳1000 | 📞 Call: +880 1700-000000</span>
         </div>
@@ -34,7 +34,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="bg-blue-600 text-white px-3 py-2 rounded-lg font-bold text-xl">
+            <div className="bg-primary-500 text-white px-3 py-2 rounded-lg font-bold text-xl">
               Tech Pinik
             </div>
           </Link>
@@ -47,11 +47,11 @@ export default function Header() {
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
               <button
                 type="submit"
-                className="bg-blue-600 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700 transition-colors"
+                className="bg-primary-500 text-white px-6 py-2 rounded-r-lg hover:bg-primary-600 transition-colors"
               >
                 <MagnifyingGlassIcon className="h-5 w-5" />
               </button>
@@ -88,11 +88,11 @@ export default function Header() {
               placeholder="Search for products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700 transition-colors"
+              className="bg-primary-500 text-white px-6 py-2 rounded-r-lg hover:bg-primary-600 transition-colors"
             >
               <MagnifyingGlassIcon className="h-5 w-5" />
             </button>
@@ -105,27 +105,27 @@ export default function Header() {
         <div className="container mx-auto px-4">
           <ul className="flex flex-row space-x-8 py-2">
             <li>
-              <Link href="/" className="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-white rounded transition-colors">
+              <Link href="/" className="block py-2 px-4 text-gray-700 hover:text-primary-600 hover:bg-white rounded transition-colors">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/products" className="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-white rounded transition-colors">
+              <Link href="/products" className="block py-2 px-4 text-gray-700 hover:text-primary-600 hover:bg-white rounded transition-colors">
                 All Products
               </Link>
             </li>
             <li>
-              <Link href="/categories" className="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-white rounded transition-colors">
+              <Link href="/categories" className="block py-2 px-4 text-gray-700 hover:text-primary-600 hover:bg-white rounded transition-colors">
                 Categories
               </Link>
             </li>
             <li>
-              <Link href="/about" className="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-white rounded transition-colors">
+              <Link href="/about" className="block py-2 px-4 text-gray-700 hover:text-primary-600 hover:bg-white rounded transition-colors">
                 About Us
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-white rounded transition-colors">
+              <Link href="/contact" className="block py-2 px-4 text-gray-700 hover:text-primary-600 hover:bg-white rounded transition-colors">
                 Contact
               </Link>
             </li>

@@ -98,7 +98,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
           <p className="text-xs text-gray-500 mb-1">{product.brand}</p>
           
           {/* Product Name */}
-          <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2 hover:text-blue-600 transition-colors">
+          <h3 className="font-semibold text-gray-800 mb-2 line-clamp-2 hover:text-primary-600 transition-colors">
             {product.name}
           </h3>
           
@@ -124,7 +124,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
           {/* Price */}
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center space-x-2">
-              <span className="text-lg font-bold text-blue-600">
+              <span className="text-lg font-bold text-primary-600">
                 ৳{product.price.toLocaleString()}
               </span>
               {product.comparePrice && (
@@ -144,7 +144,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                 : itemQuantity > 0
                 ? 'bg-green-600 hover:bg-green-700 text-white'
-                : 'bg-blue-600 hover:bg-blue-700 text-white'
+                : 'bg-primary-500 hover:bg-primary-600 text-white'
             }`}
           >
             {isLoading ? (

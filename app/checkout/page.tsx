@@ -204,7 +204,7 @@ export default function CheckoutPage() {
                       value={formData.firstName}
                       onChange={handleInputChange}
                       required
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -218,7 +218,7 @@ export default function CheckoutPage() {
                       value={formData.lastName}
                       onChange={handleInputChange}
                       required
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -233,7 +233,7 @@ export default function CheckoutPage() {
                       onChange={handleInputChange}
                       placeholder="01XXXXXXXXX"
                       required
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                     />
                   </div>
                   <div>
@@ -246,7 +246,7 @@ export default function CheckoutPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                     />
                   </div>
                 </div>
@@ -270,7 +270,7 @@ export default function CheckoutPage() {
                       value={formData.address}
                       onChange={handleInputChange}
                       required
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                     />
                   </div>
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
@@ -285,7 +285,7 @@ export default function CheckoutPage() {
                         value={formData.city}
                         onChange={handleInputChange}
                         required
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                       />
                     </div>
                     <div>
@@ -298,7 +298,7 @@ export default function CheckoutPage() {
                         value={formData.district}
                         onChange={handleInputChange}
                         required
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                       >
                         <option value="">Select District</option>
                         {bangladeshiDistricts.map((district) => (
@@ -318,7 +318,7 @@ export default function CheckoutPage() {
                         name="postalCode"
                         value={formData.postalCode}
                         onChange={handleInputChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                       />
                     </div>
                   </div>
@@ -340,7 +340,7 @@ export default function CheckoutPage() {
                       value="cod"
                       checked={formData.paymentMethod === 'cod'}
                       onChange={handleInputChange}
-                      className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300"
+                      className="focus:ring-blue-500 h-4 w-4 text-primary-600 border-gray-300"
                     />
                     <label htmlFor="cod" className="ml-3 block text-sm font-medium text-gray-700">
                       Cash on Delivery (COD)
@@ -354,7 +354,7 @@ export default function CheckoutPage() {
                       value="bkash"
                       checked={formData.paymentMethod === 'bkash'}
                       onChange={handleInputChange}
-                      className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300"
+                      className="focus:ring-blue-500 h-4 w-4 text-primary-600 border-gray-300"
                     />
                     <label htmlFor="bkash" className="ml-3 block text-sm font-medium text-gray-700">
                       bKash
@@ -368,7 +368,7 @@ export default function CheckoutPage() {
                       value="nagad"
                       checked={formData.paymentMethod === 'nagad'}
                       onChange={handleInputChange}
-                      className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300"
+                      className="focus:ring-blue-500 h-4 w-4 text-primary-600 border-gray-300"
                     />
                     <label htmlFor="nagad" className="ml-3 block text-sm font-medium text-gray-700">
                       Nagad
@@ -382,7 +382,7 @@ export default function CheckoutPage() {
                       value="rocket"
                       checked={formData.paymentMethod === 'rocket'}
                       onChange={handleInputChange}
-                      className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300"
+                      className="focus:ring-blue-500 h-4 w-4 text-primary-600 border-gray-300"
                     />
                     <label htmlFor="rocket" className="ml-3 block text-sm font-medium text-gray-700">
                       Rocket
@@ -402,7 +402,7 @@ export default function CheckoutPage() {
                         onChange={handleInputChange}
                         placeholder="01XXXXXXXXX"
                         required
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                       />
                     </div>
                   )}
@@ -421,7 +421,7 @@ export default function CheckoutPage() {
                   value={formData.notes}
                   onChange={handleInputChange}
                   placeholder="Any special instructions for your order..."
-                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500"
                 />
               </div>
             </form>
@@ -479,7 +479,7 @@ export default function CheckoutPage() {
                 form="checkout-form"
                 onClick={handleSubmit}
                 disabled={isLoading}
-                className="w-full bg-blue-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="w-full bg-primary-500 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {isLoading ? 'Placing Order...' : 'Place Order'}
               </button>

@@ -31,7 +31,10 @@ export async function GET() {
       }
     ]);
     
-    return NextResponse.json(categories);
+    return NextResponse.json({
+      success: true,
+      data: categories
+    });
   } catch (error) {
     console.error('Categories API error:', error);
     return NextResponse.json(

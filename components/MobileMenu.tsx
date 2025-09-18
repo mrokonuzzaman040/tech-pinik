@@ -67,7 +67,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors tap-target"
+                    className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors tap-target"
                   >
                     <IconComponent className="h-5 w-5" />
                     <span className="font-medium">{item.label}</span>
@@ -84,7 +84,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <p className="text-sm text-gray-600 mb-2">Need help?</p>
             <a
               href="tel:+8801700000000"
-              className="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors"
+              className="text-primary-600 font-medium text-sm hover:text-primary-700 transition-colors"
             >
               📞 +880 1700-000000
             </a>

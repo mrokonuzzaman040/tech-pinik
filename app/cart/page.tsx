@@ -37,7 +37,7 @@ export default function CartPage() {
             </p>
             <Link
               href="/products"
-              className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+              className="mt-6 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-500 hover:bg-primary-600 transition-colors"
             >
               Continue Shopping
             </Link>
@@ -152,7 +152,7 @@ export default function CartPage() {
             <div className="mt-6">
               <Link
                 href="/checkout"
-                className="w-full bg-blue-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors flex items-center justify-center"
+                className="w-full bg-primary-500 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors flex items-center justify-center"
               >
                 Proceed to Checkout
               </Link>
@@ -169,7 +169,7 @@ export default function CartPage() {
                 or{' '}
                 <Link
                   href="/products"
-                  className="text-blue-600 font-medium hover:text-blue-500"
+                  className="text-primary-600 font-medium hover:text-primary-500"
                 >
                   Continue Shopping
                   <span aria-hidden="true"> &rarr;</span>
