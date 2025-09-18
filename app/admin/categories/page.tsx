@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { 
   Plus,
   Search,
@@ -153,13 +154,13 @@ export default function AdminCategoriesPage() {
               Manage product categories and their organization
             </p>
           </div>
-          <button
-            onClick={() => setShowModal(true)}
+          <Link
+            href="/admin/categories/new"
             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
           >
             <Plus className="h-4 w-4 mr-2" />
             Add Category
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -207,13 +208,13 @@ export default function AdminCategoriesPage() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => handleEdit(category)}
+                    <Link
+                      href={`/admin/categories/${category._id}/edit`}
                       className="p-1 text-gray-400 hover:text-primary-600"
                       title="Edit Category"
                     >
                       <Edit2 className="h-4 w-4" />
-                    </button>
+                    </Link>
                     <button
                       onClick={() => handleDelete(category._id)}
                       className="p-1 text-gray-400 hover:text-red-600"

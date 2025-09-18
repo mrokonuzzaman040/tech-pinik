@@ -42,9 +42,10 @@ export class ImageBBUploader {
   private baseUrl = 'https://api.imgbb.com/1/upload';
 
   constructor() {
-    this.apiKey = process.env.IMAGEBB_API_KEY || '';
+    this.apiKey = process.env.NEXT_PUBLIC_IMAGEBB_API_KEY || process.env.IMAGEBB_API_KEY || '';
     if (!this.apiKey) {
-      throw new Error('ImageBB API key is required. Please set IMAGEBB_API_KEY environment variable.');
+      console.warn('ImageBB API key not found. Image upload will not work. Please set NEXT_PUBLIC_IMAGEBB_API_KEY environment variable.');
+      // Don't throw error to allow development without API key
     }
   }
 
