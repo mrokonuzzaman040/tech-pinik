@@ -194,7 +194,7 @@ export default function AdminProductsPage() {
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
               >
                 <option value="">All Categories</option>
-                {categories.map((category) => (
+                {categories && categories.map((category) => (
                   <option key={category._id} value={category._id}>
                     {category.name}
                   </option>
@@ -248,7 +248,7 @@ export default function AdminProductsPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {products.map((product) => (
+                  {products && products.map((product) => (
                     <tr key={product._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">

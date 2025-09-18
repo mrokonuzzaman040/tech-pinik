@@ -178,7 +178,7 @@ export default function AdminCategoriesPage() {
           <div className="flex items-center justify-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
           </div>
-        ) : filteredCategories.length > 0 ? (
+        ) : filteredCategories && filteredCategories.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
             {filteredCategories.map((category) => (
               <div
