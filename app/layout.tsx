@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import { CartProvider } from '@/contexts/CartContext';
 import ServiceWorker from '@/components/ServiceWorker';
-import Header from '@/components/Header';
+import LayoutWrapper from '@/components/LayoutWrapper';
 import { measureWebVitals } from '@/lib/performance';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -109,18 +109,9 @@ export default function RootLayout({
         <ErrorBoundary>
           <CartProvider>
             <ServiceWorker />
-            <div className="min-h-screen bg-gray-50 flex flex-col">
-              <Header />
-              <main className="flex-1">
-                {children}
-              </main>
-              {/* Footer */}
-              <footer className="bg-secondary-800 text-white py-8 mt-auto">
-                <div className="container mx-auto px-4 text-center">
-                  <p>&copy; 2024 TechPinik. All rights reserved.</p>
-                </div>
-              </footer>
-            </div>
+            <LayoutWrapper>
+              {children}
+            </LayoutWrapper>
             <Toaster
               position="top-right"
               toastOptions={{

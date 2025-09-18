@@ -77,7 +77,7 @@ export default function AdminDashboard() {
       case 'pending':
         return 'text-yellow-600 bg-yellow-100';
       case 'confirmed':
-        return 'text-blue-600 bg-blue-100';
+        return 'text-primary-600 bg-primary-100';
       case 'processing':
         return 'text-purple-600 bg-purple-100';
       case 'shipped':
@@ -94,7 +94,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
       </div>
     );
   }
@@ -304,7 +304,7 @@ export default function AdminDashboard() {
           <div className="p-5">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Package className="h-6 w-6 text-blue-400" />
+                <Package className="h-6 w-6 text-primary-400" />
               </div>
               <div className="ml-5 w-0 flex-1">
                 <dl>
