@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/CartContext';
 import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
 
 export default function CartPage() {
-  const { items, updateQuantity, removeItem, getTotalPrice, getTotalItems } = useCart();
+  const { items, updateQuantity, removeItem, total, itemCount } = useCart();
 
   const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity < 1) {
@@ -132,19 +132,19 @@ export default function CartPage() {
 
             <div className="mt-6 space-y-4">
               <div className="flex items-center justify-between">
-                <dt className="text-sm text-gray-600">Items ({getTotalItems()})</dt>
-                <dd className="text-sm font-medium text-gray-900">{formatPrice(getTotalPrice())}</dd>
+                <dt className="text-sm text-gray-600">Items ({itemCount})</dt>
+                <dd className="text-sm font-medium text-gray-900">{formatPrice(total)}</dd>
               </div>
               <div className="flex items-center justify-between">
                 <dt className="text-sm text-gray-600">Shipping</dt>
                 <dd className="text-sm font-medium text-gray-900">
-                  {getTotalPrice() >= 1000 ? 'Free' : formatPrice(60)}
+                  {total >= 1000 ? 'Free' : formatPrice(60)}
                 </dd>
               </div>
               <div className="border-t border-gray-200 pt-4 flex items-center justify-between">
                 <dt className="text-base font-medium text-gray-900">Order total</dt>
                 <dd className="text-base font-medium text-gray-900">
-                  {formatPrice(getTotalPrice() + (getTotalPrice() >= 1000 ? 0 : 60))}
+                  {formatPrice(total + (total >= 1000 ? 0 : 60))}
                 </dd>
               </div>
             </div>

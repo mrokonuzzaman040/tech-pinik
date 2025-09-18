@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/CartContext';
 import { ProductImage } from './OptimizedImage';
 import LoadingSpinner from './LoadingSpinner';
 import { ShoppingCartIcon, EyeIcon } from '@heroicons/react/24/outline';
@@ -31,10 +31,10 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, className = '' }: ProductCardProps) {
-  const { addItem, getItemQuantity } = useCart();
+  const { addItem, items } = useCart();
   const [isLoading, setIsLoading] = useState(false);
 
-  const itemQuantity = getItemQuantity(product._id);
+  const itemQuantity = items.find(item => item.id === product._id)?.quantity || 0;
   const discountPercentage = product.comparePrice 
     ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
     : 0;

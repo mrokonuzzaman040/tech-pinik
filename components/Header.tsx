@@ -4,13 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ShoppingCartIcon, MagnifyingGlassIcon, Bars3Icon } from '@heroicons/react/24/outline';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/CartContext';
 import MobileMenu from './MobileMenu';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { items, getTotalItems } = useCart();
+  const { items, itemCount } = useCart();
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
@@ -63,9 +63,9 @@ export default function Header() {
             {/* Cart */}
             <Link href="/cart" className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
               <ShoppingCartIcon className="h-6 w-6 text-gray-700" />
-              {getTotalItems() > 0 && (
+              {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {getTotalItems()}
+                  {itemCount}
                 </span>
               )}
             </Link>

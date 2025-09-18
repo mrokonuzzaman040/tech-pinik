@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/CartContext';
 import { MapPin, User, CreditCard } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -41,9 +41,10 @@ const bangladeshiDistricts = [
 ];
 
 export default function CheckoutPage() {
-  const { items, getTotalPrice, getTotalItems, clearCart } = useCart();
+  const { items, total, itemCount, clearCart } = useCart();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   const [formData, setFormData] = useState<CheckoutForm>({
     firstName: '',
@@ -57,6 +58,16 @@ export default function CheckoutPage() {
     paymentMethod: 'cod',
     notes: '',
   });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && items.length === 0) {
+      router.push('/cart');
+    }
+  }, [mounted, items.length, router]);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('en-BD', {
@@ -135,9 +146,9 @@ export default function CheckoutPage() {
           mobileNumber: formData.bkashNumber,
         },
         totals: {
-          subtotal: getTotalPrice(),
-          shipping: getTotalPrice() >= 1000 ? 0 : 60,
-          total: getTotalPrice() + (getTotalPrice() >= 1000 ? 0 : 60),
+          subtotal: subtotal,
+          shipping: shipping,
+          total: grandTotal,
         },
         notes: formData.notes,
         status: 'pending',
@@ -168,14 +179,17 @@ export default function CheckoutPage() {
     }
   };
 
-  if (items.length === 0) {
-    router.push('/cart');
+  if (!mounted) {
     return null;
   }
 
-  const subtotal = getTotalPrice();
+  if (items.length === 0) {
+    return null; // The useEffect will handle the redirect
+  }
+
+  const subtotal = total;
   const shipping = subtotal >= 1000 ? 0 : 60;
-  const total = subtotal + shipping;
+  const grandTotal = subtotal + shipping;
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -458,7 +472,7 @@ export default function CheckoutPage() {
 
             <div className="mt-6 border-t border-gray-200 pt-6 space-y-4">
               <div className="flex items-center justify-between">
-                <dt className="text-sm text-gray-600">Subtotal ({getTotalItems()} items)</dt>
+                <dt className="text-sm text-gray-600">Subtotal ({itemCount} items)</dt>
                 <dd className="text-sm font-medium text-gray-900">{formatPrice(subtotal)}</dd>
               </div>
               <div className="flex items-center justify-between">
@@ -469,7 +483,7 @@ export default function CheckoutPage() {
               </div>
               <div className="border-t border-gray-200 pt-4 flex items-center justify-between">
                 <dt className="text-base font-medium text-gray-900">Order total</dt>
-                <dd className="text-base font-medium text-gray-900">{formatPrice(total)}</dd>
+                <dd className="text-base font-medium text-gray-900">{formatPrice(grandTotal)}</dd>
               </div>
             </div>
 
