@@ -25,7 +25,7 @@ export interface IOrder extends Document {
   subtotal: number;
   shippingCost: number;
   total: number;
-  paymentMethod: 'cash_on_delivery';
+  paymentMethod: 'cash_on_delivery' | 'bkash' | 'nagad' | 'rocket';
   paymentStatus: 'pending' | 'paid' | 'failed';
   orderStatus: 'pending' | 'confirmed' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
   notes?: string;
@@ -134,7 +134,7 @@ const OrderSchema = new Schema<IOrder>({
   },
   paymentMethod: {
     type: String,
-    enum: ['cash_on_delivery'],
+    enum: ['cash_on_delivery', 'bkash', 'nagad', 'rocket'],
     default: 'cash_on_delivery'
   },
   paymentStatus: {

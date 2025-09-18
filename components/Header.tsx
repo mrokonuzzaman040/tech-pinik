@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingCartIcon, MagnifyingGlassIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, MagnifyingGlassIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { useCart } from '@/hooks/useCart';
+import MobileMenu from './MobileMenu';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -72,11 +73,7 @@ export default function Header() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
             >
-              {isMenuOpen ? (
-                <XMarkIcon className="h-6 w-6 text-gray-700" />
-              ) : (
-                <Bars3Icon className="h-6 w-6 text-gray-700" />
-              )}
+              <Bars3Icon className="h-6 w-6 text-gray-700" />
             </button>
           </div>
         </div>
@@ -102,9 +99,9 @@ export default function Header() {
       </div>
 
       {/* Navigation */}
-      <nav className={`bg-gray-50 border-t ${isMenuOpen ? 'block' : 'hidden'} md:block`}>
+      <nav className="bg-gray-50 border-t hidden md:block">
         <div className="container mx-auto px-4">
-          <ul className="flex flex-col md:flex-row md:space-x-8 py-2">
+          <ul className="flex flex-row space-x-8 py-2">
             <li>
               <Link href="/" className="block py-2 px-4 text-gray-700 hover:text-blue-600 hover:bg-white rounded transition-colors">
                 Home
@@ -133,6 +130,9 @@ export default function Header() {
           </ul>
         </div>
       </nav>
+
+      {/* Mobile Menu */}
+      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </header>
   );
 }

@@ -1,9 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { ShoppingCartIcon, EyeIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 import { useCart } from '@/hooks/useCart';
+import { ProductImage } from './OptimizedImage';
+import LoadingSpinner from './LoadingSpinner';
+import { ShoppingCartIcon, EyeIcon } from '@heroicons/react/24/outline';
 
 interface Product {
   _id: string;
@@ -30,36 +32,41 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, className = '' }: ProductCardProps) {
   const { addItem, getItemQuantity } = useCart();
-  const itemQuantity = getItemQuantity(product._id);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const itemQuantity = getItemQuantity(product._id);
+  const discountPercentage = product.comparePrice 
+    ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
+    : 0;
+
+  const handleAddToCart = async (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     
-    if (product.stock > 0) {
+    if (product.stock === 0) return;
+    
+    setIsLoading(true);
+    try {
       addItem({
         id: product._id,
         name: product.name,
         price: product.price,
         image: product.images[0],
-        stock: product.stock,
+        stock: product.stock
       });
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  const discountPercentage = product.comparePrice 
-    ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
-    : 0;
 
   return (
     <div className={`bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden group ${className}`}>
       <Link href={`/product/${product.slug}`}>
         {/* Product Image */}
         <div className="relative aspect-square overflow-hidden bg-gray-100">
-          <Image
+          <ProductImage
             src={product.images[0]}
             alt={product.name}
-            fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
           
@@ -131,7 +138,7 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
           {/* Add to Cart Button */}
           <button
             onClick={handleAddToCart}
-            disabled={product.stock === 0}
+            disabled={product.stock === 0 || isLoading}
             className={`w-full flex items-center justify-center space-x-2 py-2 px-4 rounded-lg font-medium transition-colors ${
               product.stock === 0
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -140,10 +147,16 @@ export default function ProductCard({ product, className = '' }: ProductCardProp
                 : 'bg-blue-600 hover:bg-blue-700 text-white'
             }`}
           >
-            <ShoppingCartIcon className="h-4 w-4" />
+            {isLoading ? (
+              <LoadingSpinner size="sm" />
+            ) : (
+              <ShoppingCartIcon className="h-4 w-4" />
+            )}
             <span>
               {product.stock === 0 
                 ? 'Out of Stock' 
+                : isLoading
+                ? 'Adding...'
                 : itemQuantity > 0 
                 ? `In Cart (${itemQuantity})` 
                 : 'Add to Cart'
