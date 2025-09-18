@@ -150,6 +150,10 @@ export default function AdminProductsPage() {
     });
   };
 
+  // Ensure arrays are always defined
+  const safeProducts = products || [];
+  const safeCategories = categories || [];
+
   return (
     <div>
       {/* Header */}
@@ -194,7 +198,7 @@ export default function AdminProductsPage() {
                 className="block w-full px-3 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500"
               >
                 <option value="">All Categories</option>
-                {categories && categories.map((category) => (
+                {safeCategories.map((category) => (
                   <option key={category._id} value={category._id}>
                     {category.name}
                   </option>
@@ -218,7 +222,7 @@ export default function AdminProductsPage() {
           <div className="flex items-center justify-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
           </div>
-        ) : products && products.length > 0 ? (
+        ) : safeProducts.length > 0 ? (
           <>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
@@ -248,7 +252,7 @@ export default function AdminProductsPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {products && products.map((product) => (
+                  {safeProducts.map((product) => (
                     <tr key={product._id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
