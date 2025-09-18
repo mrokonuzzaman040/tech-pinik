@@ -160,7 +160,7 @@ const ProductSchema = new Schema<IProduct>({
 });
 
 // Create indexes for better performance
-ProductSchema.index({ slug: 1 });
+// Note: slug index is automatically created by unique: true
 ProductSchema.index({ category: 1, isActive: 1 });
 ProductSchema.index({ brand: 1, isActive: 1 });
 ProductSchema.index({ price: 1 });

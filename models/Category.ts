@@ -50,7 +50,7 @@ const CategorySchema = new Schema<ICategory>({
 });
 
 // Create index for better performance
-CategorySchema.index({ slug: 1 });
+// Note: slug index is automatically created by unique: true
 CategorySchema.index({ isActive: 1, sortOrder: 1 });
 
 export default mongoose.models.Category || mongoose.model<ICategory>('Category', CategorySchema);
