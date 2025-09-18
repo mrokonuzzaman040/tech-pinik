@@ -58,7 +58,7 @@ export default function OrderConfirmationPage() {
         } else {
           setError('Order not found');
         }
-      } catch (err) {
+      } catch (error) {
         setError('Failed to load order details');
       } finally {
         setLoading(false);

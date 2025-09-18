@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useCart } from '@/hooks/useCart';
-import { MapPin, Phone, Mail, User, CreditCard } from 'lucide-react';
+import { MapPin, User, CreditCard } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 interface CheckoutForm {

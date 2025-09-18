@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ProductCard from '@/components/ProductCard';
 import ProductFilters from '@/components/ProductFilters';
@@ -58,11 +58,7 @@ function ProductsContent() {
   }, [searchParams]);
 
   // Fetch products when filters, sort, or page changes
-  useEffect(() => {
-    fetchProducts();
-  }, [filters, sortBy, sortOrder, currentPage]);
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
@@ -94,7 +90,11 @@ function ProductsContent() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters, sortBy, sortOrder, currentPage]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const handleFilterChange = (newFilters: Filters) => {
     setFilters(newFilters);

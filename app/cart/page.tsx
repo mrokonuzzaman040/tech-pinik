@@ -8,7 +8,6 @@ import { Trash2, Plus, Minus, ShoppingBag } from 'lucide-react';
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, getTotalPrice, getTotalItems } = useCart();
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity < 1) {
@@ -87,7 +86,6 @@ export default function CartPage() {
                               <button
                                 onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                                 className="p-1 rounded-md hover:bg-gray-100 transition-colors"
-                                disabled={isLoading}
                               >
                                 <Minus className="h-4 w-4" />
                               </button>
@@ -97,7 +95,7 @@ export default function CartPage() {
                               <button
                                 onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                                 className="p-1 rounded-md hover:bg-gray-100 transition-colors"
-                                disabled={isLoading || item.quantity >= item.stock}
+                                disabled={item.quantity >= item.stock}
                               >
                                 <Plus className="h-4 w-4" />
                               </button>
@@ -108,7 +106,6 @@ export default function CartPage() {
                                 type="button"
                                 onClick={() => removeItem(item.id)}
                                 className="font-medium text-red-600 hover:text-red-500 flex items-center space-x-1"
-                                disabled={isLoading}
                               >
                                 <Trash2 className="h-4 w-4" />
                                 <span>Remove</span>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -72,11 +72,7 @@ export default function AdminOrderDetailsPage() {
     { value: 'cancelled', label: 'Cancelled', icon: XCircle, color: 'text-red-600 bg-red-100' }
   ];
 
-  useEffect(() => {
-    fetchOrder();
-  }, [orderId]);
-
-  const fetchOrder = async () => {
+  const fetchOrder = useCallback(async () => {
     try {
       const response = await fetch(`/api/orders/${orderId}`);
       if (response.ok) {
@@ -88,11 +84,14 @@ export default function AdminOrderDetailsPage() {
       }
     } catch (error) {
       console.error('Error fetching order:', error);
-      router.push('/admin/orders');
     } finally {
       setLoading(false);
     }
-  };
+  }, [orderId, router]);
+
+  useEffect(() => {
+    fetchOrder();
+  }, [fetchOrder]);
 
   const updateOrderStatus = async (newStatus: string) => {
     if (!order) return;

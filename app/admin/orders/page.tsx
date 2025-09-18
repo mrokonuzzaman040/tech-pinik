@@ -1,16 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { 
   Search, 
-  Filter, 
   Eye,
   Package,
   Phone,
-  Calendar,
-  DollarSign,
-  ChevronDown
+  Calendar
 } from 'lucide-react';
 
 interface Order {
@@ -64,31 +61,36 @@ export default function AdminOrdersPage() {
     { value: 'cancelled', label: 'Cancelled' }
   ];
 
-  useEffect(() => {
-    fetchOrders();
-  }, [currentPage, searchTerm, statusFilter]);
-
-  const fetchOrders = async () => {
+  const fetchOrders = useCallback(async () => {
     try {
       const params = new URLSearchParams({
         page: currentPage.toString(),
         limit: '10',
-        ...(searchTerm && { phone: searchTerm }),
+        ...(searchTerm && { search: searchTerm }),
         ...(statusFilter && { status: statusFilter })
       });
 
-      const response = await fetch(`/api/orders?${params}`);
-      if (response.ok) {
-        const data = await response.json();
-        setOrders(data.orders);
-        setTotalPages(Math.ceil(data.total / 10));
-      }
+      const response = await fetch(`/api/admin/orders?${params}`);
+      const data = await response.json();
+
+      if (data.success) {
+         setOrders(data.data);
+         setTotalPages(data.pagination.totalPages);
+       }
     } catch (error) {
       console.error('Error fetching orders:', error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm, statusFilter]);
+
+  useEffect(() => {
+    fetchOrders();
+  }, [fetchOrders]);
+
+  useEffect(() => {
+    fetchOrders();
+  }, [fetchOrders]);
 
   const updateOrderStatus = async (orderId: string, newStatus: string) => {
     try {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -39,13 +39,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   const { addItem } = useCart();
 
-  useEffect(() => {
-    if (slug) {
-      fetchProduct();
-    }
-  }, [slug]);
-
-  const fetchProduct = async () => {
+  const fetchProduct = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`/api/products/${slug}`);
@@ -63,7 +57,13 @@ export default function ProductDetailPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [slug]);
+
+  useEffect(() => {
+    if (slug) {
+      fetchProduct();
+    }
+  }, [slug, fetchProduct]);
 
   const fetchRelatedProducts = async (categorySlug: string, excludeId: string) => {
     try {

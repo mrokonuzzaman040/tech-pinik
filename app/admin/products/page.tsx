@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { 
@@ -41,12 +41,7 @@ export default function AdminProductsPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
 
-  useEffect(() => {
-    fetchProducts();
-    fetchCategories();
-  }, [currentPage, searchTerm, selectedCategory]);
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const params = new URLSearchParams({
         page: currentPage.toString(),
@@ -66,7 +61,12 @@ export default function AdminProductsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchTerm, selectedCategory]);
+
+  useEffect(() => {
+    fetchProducts();
+    fetchCategories();
+  }, [fetchProducts]);
 
   const fetchCategories = async () => {
     try {
